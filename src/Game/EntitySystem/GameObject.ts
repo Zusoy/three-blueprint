@@ -8,10 +8,14 @@ export class GameObject extends Mesh implements ISceneEntity
 
   public static Cube(config: {width: number, height: number, depth: number, color: ColorRepresentation}): GameObject
   {
-    return new GameObject(
+    const go = new GameObject(
       new BoxGeometry(config.width, config.height, config.depth),
       new MeshStandardMaterial({ color: config.color })
     );
+
+    go.name = 'cube'
+
+    return go;
   }
 
   public onStart(): void
@@ -45,5 +49,15 @@ export class GameObject extends Mesh implements ISceneEntity
   public addComponent<T extends Component>(component: T): void
   {
     this.components.push(component)
+  }
+
+  public getId(): string
+  {
+    return this.uuid
+  }
+
+  public getName(): string
+  {
+    return this.name
   }
 }

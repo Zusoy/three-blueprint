@@ -1,9 +1,9 @@
-import { Node } from 'TreeEditor/Core'
+import { Node, Context } from 'TreeEditor/Core'
 import { FlumeNode } from 'flume'
 
 export interface INodeBuilder
 {
-  supports(type: string): boolean
+  supports(type: string, context: Context): boolean
 
-  build(node: FlumeNode): Node
+  build(node: FlumeNode, context: Context): Node
 }

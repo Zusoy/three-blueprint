@@ -14,3 +14,7 @@
 [data-flume-node-type="sequencer"] [data-flume-component="node-header"] {
   background: #e74c3c;
 }
+
+body {
+  overflow-y: hidden;
+}

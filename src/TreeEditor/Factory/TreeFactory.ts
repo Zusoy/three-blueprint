@@ -1,10 +1,10 @@
-import { Node, RootNode, Tree } from 'TreeEditor/Core'
+import { Context, Node, RootNode, Tree } from 'TreeEditor/Core'
 import { FlumeNode, NodeMap } from 'flume'
 import { INodeBuilder } from 'TreeEditor/Factory/Node/INodeBuilder'
 
 export class TreeFactory
 {
-  constructor(private readonly nodeBuilder: INodeBuilder)
+  constructor(private readonly nodeBuilder: INodeBuilder, private readonly context: Context)
   {
   }
 
@@ -18,7 +18,7 @@ export class TreeFactory
 
     const buildTree = (flumeNode: FlumeNode, map: NodeMap, tree: Tree) => {
       if (!tree.findNode(flumeNode.id)) {
-        const newNode = this.nodeBuilder.build(flumeNode)
+        const newNode = this.nodeBuilder.build(flumeNode, this.context)
         tree.addNode(newNode)
       }
 

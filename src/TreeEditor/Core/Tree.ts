@@ -1,7 +1,9 @@
 import { RootNode } from 'TreeEditor/Core/RootNode'
 import { State } from 'TreeEditor/Core/State'
-import { Node } from 'TreeEditor/Core'
+import { Node, Context } from 'TreeEditor/Core'
 import { IHasChildren } from 'TreeEditor/Core/IHasChildren'
+
+declare type TreeVisiter = (node: Node) => void
 
 export class Tree
 {
@@ -55,5 +57,15 @@ export class Tree
   public findNode(guid: string): Node|null
   {
     return this.nodes.find(node => node.getGUID() === guid) || null
+  }
+
+  public bind(context: Context): void
+  {
+    this.traverse(node => node.bind(context))
+  }
+
+  public traverse(visiter: TreeVisiter): void
+  {
+    this.nodes.forEach(node => visiter(node))
   }
 }

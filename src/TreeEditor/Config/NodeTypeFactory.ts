@@ -3,11 +3,16 @@ import { InputControlConfiguration } from 'TreeEditor/Core/Metadata/InputControl
 import * as Actions from 'TreeEditor/Core/Actions'
 import * as Decorators from 'TreeEditor/Core/Decorators'
 import * as Composites from 'TreeEditor/Core/Composites'
+import { Context } from 'TreeEditor/Core'
 import 'reflect-metadata'
 
 export class NodeTypeFactory
 {
-  private readonly controlTypes: string[] = [ 'string', 'boolean', 'number' ]
+  private readonly controlTypes: string[] = [ 'string', 'boolean', 'number', 'gameObject' ]
+
+  constructor(private readonly context: Context)
+  {
+  }
 
   public createRootNode(): NodeTypeConfig
   {

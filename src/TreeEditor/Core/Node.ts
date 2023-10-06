@@ -1,10 +1,12 @@
 import { State } from 'TreeEditor/Core/State'
+import { Context } from 'TreeEditor/Core/Context'
 
 export abstract class Node
 {
   protected guid: string = ''
   protected state: State = State.Running
   protected started: boolean = false
+  protected context: Context|null = null
 
   constructor()
   {
@@ -35,6 +37,11 @@ export abstract class Node
     }
 
     return State.Running;
+  }
+
+  public bind(context: Context): void
+  {
+    this.context = context
   }
 
   abstract onStart(): void;

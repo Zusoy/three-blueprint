@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react'
 import { TreeFactory } from 'TreeEditor/Factory/TreeFactory'
-import { Tree } from 'TreeEditor/Core'
+import { Context, Tree } from 'TreeEditor/Core'
 import { FlumeConfig, NodeMap } from 'flume'
 import { Game } from 'Game'
 import Box from '@mui/material/Box'
@@ -12,9 +12,10 @@ declare interface Props {
   readonly treeFactory: TreeFactory
   readonly editorConfig: FlumeConfig
   readonly game: Game
+  readonly context: Context
 }
 
-const App: React.FC<Props> = ({ treeFactory, editorConfig, game }) => {
+const App: React.FC<Props> = ({ treeFactory, editorConfig, game, context }) => {
   const requestId = useRef<number>()
   const [ isInPlayMod, setIsInPlayMod ] = useState<boolean>(false)
   const [ nodeMap, setNodeMap ] = useState<NodeMap>()
@@ -29,7 +30,10 @@ const App: React.FC<Props> = ({ treeFactory, editorConfig, game }) => {
     }
 
     setIsInPlayMod(true)
+
     const behaviour = treeFactory.buildFromFlumeMap(nodeMap)
+    behaviour.bind(context)
+
     game.start()
     update(behaviour)
   }

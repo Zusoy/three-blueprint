@@ -4,9 +4,9 @@ import { Scene } from 'Game/Scene'
 export class Game
 {
   constructor(
-    protected readonly renderer: Renderer,
-    protected readonly camera: Camera,
-    protected readonly mainScene: Scene
+    public readonly renderer: Renderer,
+    public readonly camera: Camera,
+    public readonly mainScene: Scene
   ) {
   }
 

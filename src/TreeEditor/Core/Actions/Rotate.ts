@@ -2,7 +2,9 @@ import { ActionNode, State } from 'TreeEditor/Core'
 import { GameObject } from 'Game'
 import GameObjectRef from 'TreeEditor/Core/Metadata/GameObjectReference'
 import InputControl from 'TreeEditor/Core/Metadata/InputControl'
+import Description from 'TreeEditor/Core/Metadata/Description'
 
+@Description('Rotate a GameObject')
 export class Rotate extends ActionNode
 {
   @GameObjectRef({ name: 'target', label: 'Target' })

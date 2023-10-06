@@ -1,0 +1,16 @@
+
+[data-flume-node-type="log"] [data-flume-component="node-header"] {
+  background: #f1c40f;
+}
+
+[data-flume-node-type="wait"] [data-flume-component="node-header"] {
+  background: #f1c40f;
+}
+
+[data-flume-node-type="repeater"] [data-flume-component="node-header"] {
+  background: #27ae60;
+}
+
+[data-flume-node-type="sequencer"] [data-flume-component="node-header"] {
+  background: #e74c3c;
+}

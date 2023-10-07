@@ -29,7 +29,8 @@ const buildGame = (): Game => {
   light.name = 'Directional Light'
 
   const scene = new Scene()
-  const game = new Game(renderer, camera, scene)
+  const clock = new THREE.Clock()
+  const game = new Game(renderer, camera, scene, clock)
 
   const cube = GameObject.Cube({ width: 1, height: 1, depth: 1, color: '#00cec9' })
   game.mainScene.addEntity(cube)

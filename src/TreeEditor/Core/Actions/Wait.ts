@@ -6,28 +6,26 @@ import Description from 'TreeEditor/Core/Metadata/Description'
 @Description('Wait a given time')
 export class Wait extends ActionNode
 {
-  @InputControl({ name: 'wait_time', label: 'Wait Time (s)', type: 'number' })
-  public readonly waitTime: number
-  private waited: boolean = false
+  @InputControl({ name: 'duration', label: 'Wait Time (s)', type: 'number' })
+  public readonly duration: number
+  private startTime: number|null = null
 
-  constructor(waitTime: number)
+  constructor(duration: number)
   {
     super()
-    this.waitTime = waitTime
+    this.duration = duration
   }
 
   public onStart(): void
   {
-    this.wait()
+    this.startTime = this.context!.game.clock.getElapsedTime()
   }
 
   public onUpdate(): State
   {
-    if (this.waited)
-    {
-      this.waited = false
-      this.wait()
+    const timeRemaining = this.context!.game.clock.getElapsedTime() - (this.startTime as number)
 
+    if (timeRemaining > this.duration) {
       return State.Success
     }
 
@@ -36,14 +34,5 @@ export class Wait extends ActionNode
 
   public onStop(): void
   {
-  }
-
-  private wait(): void
-  {
-    (new Promise<boolean>((resolver) => {
-      setTimeout(() => {
-        resolver(true)
-      }, this.waitTime)
-    })).then(() => this.waited = true);
   }
 }

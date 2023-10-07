@@ -12,7 +12,7 @@ export class WaitBuilder implements INodeBuilder
 
   public build(node: FlumeNode, context: Context): Node
   {
-    const wait = new Wait(node.inputData.wait_time.number)
+    const wait = new Wait(node.inputData.duration.number)
     wait.setGUID(node.id)
 
     return wait

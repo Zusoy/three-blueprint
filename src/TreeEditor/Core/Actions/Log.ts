@@ -23,7 +23,6 @@ export class Log extends ActionNode
   public onUpdate(): State
   {
     console.log(`[UPDATE] On Update : ${ this.message }`)
-    console.log(this.context)
 
     return State.Success
   }

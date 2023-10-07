@@ -46,8 +46,6 @@ export class TreeFactory
     const tree = Tree.Empty()
     buildTree(flumeRoot, map, tree)
 
-    console.log(tree)
-
     const root = tree.nodes.find(node => node instanceof RootNode)
     tree.defineRoot(root as RootNode)
 

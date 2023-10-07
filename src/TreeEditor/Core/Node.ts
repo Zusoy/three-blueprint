@@ -25,18 +25,18 @@ export abstract class Node
   public update(): State
   {
     if (!this.started) {
-      this.started = true;
-      this.onStart();
+      this.onStart()
+      this.started = true
     }
 
     this.state = this.onUpdate();
 
     if (this.state !== State.Running) {
       this.onStop();
-      return this.state;
+      this.started = false
     }
 
-    return State.Running;
+    return this.state
   }
 
   public bind(context: Context): void
